@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-int len_s(char* str) {
+int len_str(char* str) {
     int len = 0;
     while (str[len] != '\0')
         len++;
     return len;
 }
 
-int compare_s(char* s1, char* s2) {
+int compare_str(char* s1, char* s2) {
     for (int i = 0; i < len_s(s1); ++i) {
         if (s1[i] != s2[i])
             return 0;
@@ -15,7 +15,7 @@ int compare_s(char* s1, char* s2) {
     return 1;
 }
 
-void slice_s(char* string, char* slice, int start, int end) {
+void slice_str(char* string, char* slice, int start, int end) {
     if (start > end || start < 0 || end >= len_s(string))
         return;
     int size = sizeof(char);
@@ -26,15 +26,15 @@ void slice_s(char* string, char* slice, int start, int end) {
     }
 }
 
-int substring_s(char* str, char* sub) {
-    if (len_s(str) < len_s(sub))
+int substring_str(char* str, char* sub) {
+    if (len_str(str) < len_str(sub))
         return 0;
-    else if (len_s(str) == len_s(sub))
-        return compare_s(str, sub);
-    for (int i = 0; i < len_s(str) - len_s(sub) + 1; ++i) {
+    else if (len_str(str) == len_str(sub))
+        return compare_str(str, sub);
+    for (int i = 0; i < len_str(str) - len_str(sub) + 1; ++i) {
         char slice[20];
-        slice_s(str, slice, i, i + len_s(sub) - 1);
-        if (compare_s(slice, sub) == 1) {
+        slice_str(str, slice, i, i + len_str(sub) - 1);
+        if (compare_str(slice, sub) == 1) {
             return 1;
         }
     }
@@ -49,5 +49,5 @@ int main() {
     printf("substring: ");
     scanf("%s", sub_string);
 
-    printf("%s\n", substring_s(string, sub_string) == 1 ? "true" : "false");
+    printf("%s\n", substring_str(string, sub_string) == 1 ? "true" : "false");
 }
